@@ -1,0 +1,22 @@
+.wrapper {
+    position: relative;
+    top: 0px;    height: 500px;
+}
+.layout-mock *:not(.ui-splitbar){
+  background : #eee no-repeat center;
+}
+.layout-mock .center-back{
+  background-image: url("/CENTER.png");
+}
+.layout-mock .north-back{
+  background-image: url("/NORTH.png");
+}
+.layout-mock .south-back{
+  background-image: url("/SOUTH.png");
+}
+.layout-mock .east-back{
+  background-image: url("/EAST.png");
+}
+.layout-mock .west-back{
+  background-image: url("/WEST.png");
+} 

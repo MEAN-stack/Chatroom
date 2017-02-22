@@ -1,0 +1,13 @@
+{
+  "name": "chatroom",
+  "version": "0.1.0",
+  "description": "Chatroom app",
+  "author": "Paul Robertson <paul.robertson@soft-machine.co.uk>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.16.1",
+    "express": "^4.14.1",
+    "mongoose": "^4.8.2",
+    "morgan": "^1.8.1"
+  }
+}

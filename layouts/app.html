@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-ui-layout/ui-layout.css"/>
+    <link rel="stylesheet" href="/app.css">
+    </script><script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-sanitize.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-cookies.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-touch.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-animate.js"></script>
+
+    <script type="text/javascript" src="bower_components/raf/index.js"></script>
+    <script type="text/javascript" src="bower_components/angular-ui-layout/ui-layout.js"></script>
+  </head>
+  <body ng-app="app">
+      <div ui-layout options="{ flow : 'row', dividerSize: '8px'}" class="layout-mock">
+	<div ui-layout-container class="north-back">North</div>
+        <div ui-layout-container>
+
+          <div ui-layout options="{ flow : 'column', dividerSize: '8px' }">
+	    <div ui-layout-container class="east-back">East</div>
+	    <div ui-layout-container class="center-back">Centre</div>
+	    <div ui-layout-container class="west-back">West</div>
+	  </div>
+
+        </div>
+	<div ui-layout-container class="south-back">South</div>
+      </div>
+    <script>
+      var app = angular.module('app', ['ui.layout'])
+    </script>
+  </body>
+</html>
