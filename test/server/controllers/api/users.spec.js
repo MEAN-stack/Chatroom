@@ -78,7 +78,7 @@ describe('controllers.api.users', function() {
 
     it('failed to create a user', function(done) {
       User.findOne(function(err, user) {
-        expect(user).to.be.null
+        expect(user).to.equal(null)
         done(err)
       })
     })
