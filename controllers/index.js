@@ -23,5 +23,6 @@ router.use('/', require('./static'))
 */
 router.use('/client', require('./client'))
 router.use('/api/rooms', require('./api/rooms'))
+router.use('/api/users', require('./api/users'))
 
 module.exports = router
