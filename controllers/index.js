@@ -14,15 +14,23 @@ router.use(bodyParser.json())
 */
 
 /*
-  Serve static assets from the assets folder
-*/
-router.use('/', require('./static'))
-
-/*
   Other endpoints
 */
 router.use('/client', require('./client'))
 router.use('/api/rooms', require('./api/rooms'))
 router.use('/api/users', require('./api/users'))
+router.use('/api/posts', require('./api/posts'))
+
+/*
+  catch errors here
+*/
+router.use(function (err, req, res, next) {
+  res.status(500).send(err.message)
+})
+
+/*
+  Serve static assets from the assets folder
+*/
+router.use('/', require('./static'))
 
 module.exports = router
