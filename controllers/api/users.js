@@ -25,7 +25,7 @@ router.post('/', function(req, res, next) {
   user.save(function(err, user) {
     if (err) {
       console.log('Error creating user: '+err.message)
-      res.send(400)
+      res.sendStatus(400)
     }
     else {
       res.status(201).json(user)
@@ -44,7 +44,7 @@ router.get('/:username', function(req, res, next) {
         res.json(user)
       }
       else {
-        res.send(404)
+        res.sendStatus(404)
       }
     }
   })

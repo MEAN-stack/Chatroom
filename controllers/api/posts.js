@@ -1,86 +1,34 @@
-var Room = require('../../models/room')
+var Post = require('../../models/post')
 var router = require('express').Router()
 
-// return a collection of rooms
+// return a collection of posts
 router.get('/', function(req, res, next) {
-  Room.find(function(err, rooms) {
+  Post.find(function(err, posts) {
     if (err) {
       return (next(err))
     }
     else {
-      res.json(rooms)
+      res.json(posts)
     }
   })
 })
 
-// create a new room
+// create a new post
 router.post('/', function(req, res, next) {
-  var room = new Room({
-    roomname: req.body.roomname,
-    topic: req.body.topic,
-    members: req.body.members 
+  var post = new Post({
+    room: req.body.room,
+    member: req.body.member,
+    body: req.body.body 
   })
-  room.save(function(err, room) {
+  post.save(function(err, post) {
     if (err) {
-      console.log('Error creating room: '+err.message)
-      res.send(400)
+      console.log('Error creating post: '+err.message)
+      res.sendStatus(400)
     }
     else {
-      res.json(201, room)
+      res.status(201).json( post)
     }
   })
-})
-
-// return details for a given room
-router.get('/:roomname', function(req, res, next) {
-  Room.findOne({roomname: req.params.roomname}, function(err, room) {
-    if (err) {
-      return (next(err))
-    }
-    else {
-      if (room) {
-        res.json(room)
-      }
-      else {
-        res.send(404)
-      }
-    }
-  })
-})
-
-// return a collection of members for a given room
-router.get('/:roomname/members', function(req, res, next) {
-  Room.findOne({roomname: req.params.roomname}, function(err, room) {
-    if (err) {
-      return (next(err))
-    }
-    else {
-      if (room) {
-        res.json(room.members)
-      }
-      else {
-        res.send(404)
-      }
-    }
-  })
-})
-
-// add a member to a room
-router.post('/:roomname/members', function(req, res, next) {
-  if (!req.body.name) {
-    res.send(400)
-  }
-  else {
-    var member = { name: req.body.name }
-    Room.findOneAndUpdate({roomname: req.params.roomname}, {$push: {members: member}}, {returnNewDocument: true}, function(err, room) {
-      if (err) {
-        return(next(err))
-      }
-      else {
-        res.json(201, room)
-      }
-    })
-  }
 })
 
 module.exports = router

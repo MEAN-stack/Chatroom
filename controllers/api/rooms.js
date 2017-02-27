@@ -23,10 +23,10 @@ router.post('/', function(req, res, next) {
   room.save(function(err, room) {
     if (err) {
       console.log('Error creating room: '+err.message)
-      res.send(400)
+      res.sendStatus(400)
     }
     else {
-      res.json(201, room)
+      res.status(201).json(room)
     }
   })
 })
@@ -42,7 +42,7 @@ router.get('/:roomname', function(req, res, next) {
         res.json(room)
       }
       else {
-        res.send(404)
+        res.sendStatus(404)
       }
     }
   })
@@ -59,7 +59,7 @@ router.get('/:roomname/members', function(req, res, next) {
         res.json(room.members)
       }
       else {
-        res.send(404)
+        res.sendStatus(404)
       }
     }
   })
@@ -68,7 +68,7 @@ router.get('/:roomname/members', function(req, res, next) {
 // add a member to a room
 router.post('/:roomname/members', function(req, res, next) {
   if (!req.body.name) {
-    res.send(400)
+    res.sendStatus(400)
   }
   else {
     var member = { name: req.body.name }
@@ -77,7 +77,7 @@ router.post('/:roomname/members', function(req, res, next) {
         return(next(err))
       }
       else {
-        res.json(201, room)
+        res.status(201).json(room)
       }
     })
   }
