@@ -13,11 +13,11 @@ describe('controllers.api.rooms', function() {
       var rooms = [
         {"roomname" : "The Pub", "topic" : "Random Chat", "members" : []},
         {"roomname" : "Node", "topic" : "node.js", "members" : [
-          {"name" : "Paul Robertson"},
-          {"name" : "Alonzo Church"},
-          {"name" : "Alan Turing"},
-          {"name" : "Haskell Curry"},
-          {"name" : "Ryan Dahl"}
+          "Paul Robertson",
+          "Alonzo Church",
+          "Alan Turing",
+          "Haskell Curry",
+          "Ryan Dahl"
         ]}
       ]
       Room.create(rooms, done)
@@ -61,11 +61,11 @@ describe('controllers.api.rooms', function() {
     beforeEach(function(done) {
       var rooms = [
         {"roomname" : "Node", "topic" : "node.js", "members" : [
-          {"name" : "Paul Robertson"},
-          {"name" : "Alonzo Church"},
-          {"name" : "Alan Turing"},
-          {"name" : "Haskell Curry"},
-          {"name" : "Ryan Dahl"}
+          "Paul Robertson",
+          "Alonzo Church",
+          "Alan Turing",
+          "Haskell Curry",
+          "Ryan Dahl"
         ]}
       ]
       Room.create(rooms, done)
@@ -90,7 +90,7 @@ describe('controllers.api.rooms', function() {
   describe('POST /api/rooms', function() {
     beforeEach(function(done) {
       api.post('/api/rooms')
-      .send({"roomname" : "Node", "topic" : "node.js", "members" : [{"name" : "Ryan Dahl"}]})
+      .send({"roomname" : "Node", "topic" : "node.js", "members" : ["Ryan Dahl"]})
       .expect(201)
       .end(done)
     })
@@ -122,7 +122,7 @@ describe('controllers.api.rooms', function() {
   describe('POST /api/rooms/:roomname/members', function() {
     beforeEach(function(done) {
       api.post('/api/rooms')
-      .send({"roomname" : "Node", "topic" : "node.js", "members" : [{"name" : "Ryan"}]})
+      .send({"roomname" : "Node", "topic" : "node.js", "members" : ["Ryan"]})
       .expect(201)
       .end(done)
     })
@@ -138,7 +138,7 @@ describe('controllers.api.rooms', function() {
       Room.findOne(function(err, room) {
         expect(room.roomname).to.equal('Node')
         expect(room.members).to.have.length(2)
-        expect(room.members[1].name).to.equal('Paul')
+        expect(room.members[1]).to.equal('Paul')
         done(err)
       })
     })
@@ -147,7 +147,7 @@ describe('controllers.api.rooms', function() {
   describe('POST /api/rooms/:roomname/members', function() {
     beforeEach(function(done) {
       api.post('/api/rooms')
-      .send({"roomname" : "Node", "topic" : "node.js", "members" : [{"name" : "Ryan"}]})
+      .send({"roomname" : "Node", "topic" : "node.js", "members" : ["Ryan"]})
       .expect(201)
       .end(done)
     })

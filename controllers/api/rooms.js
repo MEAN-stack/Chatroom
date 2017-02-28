@@ -72,7 +72,7 @@ router.post('/:roomname/members', function(req, res, next) {
   }
   else {
     var member = { name: req.body.name }
-    Room.findOneAndUpdate({roomname: req.params.roomname}, {$push: {members: member}}, {returnNewDocument: true}, function(err, room) {
+    Room.findOneAndUpdate({roomname: req.params.roomname}, {$push: {members: member.name}}, {returnNewDocument: true}, function(err, room) {
       if (err) {
         return(next(err))
       }
