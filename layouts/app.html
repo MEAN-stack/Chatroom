@@ -17,21 +17,28 @@
     <script src='/app.js'></script>
   </head>
   <body ng-app="app">
-    <div ui-layout options="{ flow : 'row', dividerSize: '8px', disableToggle: true}" class="layout-mock">
-      <div ui-layout-container class="north-back">i
+    <div ui-layout options="{ flow : 'row', dividerSize: '8px', disableToggle: true}">
+      <div ui-layout-container>
         <!-- North -->
         Chatroom
       </div>
       <div ui-layout-container>
         <div ui-layout options="{ flow : 'column', dividerSize: '8px', disableToggle: true }">
-          <div ui-layout-container class="east-back">
+          <div ui-layout-container>
             <!-- Rooms -->
+            <div ng-controller='RoomsCtrl' class='container' style='width: 100%; margin-top: 10px;'>
+              <ul class='list-group'>
+                <li ng-repeat='room in rooms' class='list-group-item'>
+                  <strong>{{room.roomname}}</strong>
+                </li>
+              </ul>
+            </div>
           </div>
-          <div ui-layout-container class="center-back">Centre</div>
-          <div ui-layout-container class="west-back">West</div>
+          <div ui-layout-container></div>
+          <div ui-layout-container></div>
          </div>
       </div>
-      <div ui-layout-container class="south-back">South</div>
+      <div ui-layout-container></div>
     </div>
   </body>
 </html>
