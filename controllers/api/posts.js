@@ -13,6 +13,18 @@ router.get('/', function(req, res, next) {
   })
 })
 
+// return a collection of posts
+router.get('/:roomname', function(req, res, next) {
+  Post.find({room: req.params.roomname}, function(err, posts) {
+    if (err) {
+      return (next(err))
+    }
+    else {
+      res.json(posts)
+    }
+  })
+})
+
 // create a new post
 router.post('/', function(req, res, next) {
   var post = new Post({

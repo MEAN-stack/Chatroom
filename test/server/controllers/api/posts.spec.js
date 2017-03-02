@@ -28,6 +28,36 @@ describe('controllers.api.posts', function() {
     })
   })
 
+  describe('GET /api/posts/:room', function() {
+
+    beforeEach(function(done) {
+      var posts = [
+        {"room": "The Pub", "member": "Ryan", "body": "Is there anyone here?"},
+        {"room" : "Node", "member" : "Ryan", "body" : "Node rocks!"},
+        {"room" : "Node", "member" : "MEAN-stack", "body" : "Hi Ryan"}
+      ]
+      Post.create(posts, done)
+    })
+
+    it('has 2 posts in Node roo,', function(done) {
+      api.get('/api/posts/Node')
+      .expect(200)
+      .expect(function(response) {
+        expect(response.body).to.have.length(2)
+      })
+      .end(done)
+    })
+
+    it('has 1 post in The Pub', function(done) {
+      api.get('/api/posts/The Pub')
+      .expect(200)
+      .expect(function(response) {
+        expect(response.body).to.have.length(1)
+      })
+      .end(done)
+    })
+  })
+
   describe('POST /api/posts', function() {
     beforeEach(function(done) {
       api.post('/api/posts')
