@@ -1,14 +1,21 @@
 var User = require('../../models/user')
 var router = require('express').Router()
+var bcrypt = require('bcrypt')
+var jwt = require('jwt-simple')
+var config = require('../../config')
 
-// return a collection of users
+// 
 router.get('/', function(req, res, next) {
-  User.find(function(err, users) {
+  if (!req.headers['x-auth']) {
+    return res.sendStatus(401)
+  }
+  var auth = jwt.decode(req.headers['x-auth'], config.secret)
+  User.findOne({username: auth.username}, function(err, user) {
     if (err) {
       return (next(err))
     }
     else {
-      res.json(users)
+      res.json(user)
     }
   })
 })
@@ -19,17 +26,22 @@ router.post('/', function(req, res, next) {
     username: req.body.username,
     fullName: req.body.fullName,
     email: req.body.email,
-    pw: req.body.password,
     avatar: ''
   })
-  user.save(function(err, user) {
+  bcrypt.hash(req.body.password, 10, function(err, hash) {
     if (err) {
-      console.log('Error creating user: '+err.message)
-      res.sendStatus(400)
+      return next(err)
     }
-    else {
-      res.status(201).json(user)
-    }
+    user.password = hash
+    user.save(function(err, user) {
+      if (err) {
+        console.log('Error creating user: '+err.message)
+        res.sendStatus(400)
+      }
+      else {
+        res.status(201).json(user)
+      }
+    })
   })
 })
 
