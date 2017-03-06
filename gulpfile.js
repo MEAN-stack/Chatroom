@@ -6,11 +6,11 @@ var sourcemaps = require('gulp-sourcemaps')
 
 gulp.task('js', function() {
   gulp.src(['ng/module.js', 'ng/**/*.js'])
-    .pipe(sourcemaps.init())
+//    .pipe(sourcemaps.init())
       .pipe(concat('app.js'))
-      .pipe(ngAnnotate())
-      .pipe(uglify())
-    .pipe(sourcemaps.write())
+//      .pipe(ngAnnotate())
+//      .pipe(uglify())
+//    .pipe(sourcemaps.write())
     .pipe(gulp.dest('assets'))
 })
 

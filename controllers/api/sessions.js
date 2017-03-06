@@ -18,6 +18,7 @@ router.post('/', function(req, res, next) {
     if (!user) {
       return res.sendStatus(401)
     }
+    console.log('Compare '+ req.body.password + ' : ' + user.password)
     bcrypt.compare(req.body.password, user.password, function(err, valid) {
       if (err) {
         console.log(err.message)
