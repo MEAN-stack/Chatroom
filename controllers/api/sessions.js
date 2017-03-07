@@ -29,7 +29,7 @@ router.post('/', function(req, res, next) {
       }
       try {
         var token = jwt.encode({
-          userrname: user.username,
+          username: user.username,
           fullName: user.fullName,
           email: user.email
         }, config.secret)

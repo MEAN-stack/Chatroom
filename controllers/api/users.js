@@ -10,6 +10,8 @@ router.get('/', function(req, res, next) {
     return res.sendStatus(401)
   }
   var auth = jwt.decode(req.headers['x-auth'], config.secret)
+  console.log("auth")
+  console.dir(auth)
   User.findOne({username: auth.username}, function(err, user) {
     if (err) {
       return (next(err))
