@@ -35,11 +35,11 @@ describe('controllers.api.users', function() {
       .end(done)
     })
   })
-/*
+
   describe('GET /api/users/:user', function() {
 
     beforeEach(function(done) {
-      var user = { "password" : "$2a$10$l.51Gf3hVs8.CyUaUpf9wuwiBF7ESSdxALhiac/J/257Asc6sgpky", "username" : "Paul", "fullName" : "Paul Robertson", "email" : "paul.robertson@costain.com", "avatar" : "" }
+      var user = { "password" : "$2a$10$y1FW1XFwKkpBcx125po59.XtPGaoYr4fjqgtA9iIjCogN3/GXo9ua", "username" : "Alan", "fullName" : "Alan Turing", "email" : "alant@cam.ac.uk", "avatar" : "" }
       User.create(user, done)
     })
 
@@ -91,5 +91,5 @@ describe('controllers.api.users', function() {
       })
     })
   })
-*/
+
 })

@@ -28,21 +28,26 @@ router.post('/', function(req, res, next) {
     email: req.body.email,
     avatar: ''
   })
-  bcrypt.hash(req.body.password, 10, function(err, hash) {
-    if (err) {
-      return next(err)
-    }
-    user.password = hash
-    user.save(function(err, user) {
+  if (req.body.password) {
+    bcrypt.hash(req.body.password, 10, function(err, hash) {
       if (err) {
-        console.log('Error creating user: '+err.message)
-        res.sendStatus(400)
+        return next(err)
       }
-      else {
-        res.status(201).json(user)
-      }
+      user.password = hash
+      user.save(function(err, user) {
+        if (err) {
+          console.log('Error creating user: '+err.message)
+          res.sendStatus(400)
+        }
+        else {
+          res.status(201).json(user)
+        }
+      })
     })
-  })
+  }
+  else {
+    res.sendStatus(400)
+  }
 })
 
 // return details for a given user
