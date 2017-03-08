@@ -11,36 +11,44 @@ describe('controllers.api.users', function() {
 
     beforeEach(function(done) {
       var users = [
-        {username: 'MEAN-stack', fullName: 'Paul Robertson', email: 'paul.robertson@soft-machine.co.uk', password: 'passsme', avatar: ''},
-        {username: 'AnnR', fullName: 'Ann Robertson', email: 'ann.robertson@soft-machine.co.uk', password: 'passsme', avatar: ''},
-        {username: 'Dan', fullName: 'Dan Robertson', email: 'dar64@cam.ac.uk', password: 'passsme', avatar: ''},
+        { "password" : "$2a$10$l.51Gf3hVs8.CyUaUpf9wuwiBF7ESSdxALhiac/J/257Asc6sgpky", "username" : "Paul", "fullName" : "Paul Robertson", "email" : "paul.robertson@costain.com", "avatar" : "" },
+        { "password" : "$2a$10$y1FW1XFwKkpBcx125po59.XtPGaoYr4fjqgtA9iIjCogN3/GXo9ua", "username" : "Alan", "fullName" : "Alan Turing", "email" : "alant@cam.ac.uk", "avatar" : "" },
+        { "password" : "$2a$10$YBRnklXtL9tyg8iNvWjoouf9.0hA0nGSIKA4IKIF4WO.Hyy7qCBwe", "username" : "Linus", "fullName" : "Linus Torvalds", "email" : "linus@kernel.org.uk", "avatar" : "" }
       ]
       User.create(users, done)
     })
 
-    it('has 3 users', function(done) {
+    beforeEach(function(done) {
+      api.post('/api/sessions')
+      .send({username: 'Alan', password: 'passme'})
+      .expect(201)
+      .end(done)
+    })
+
+    it('has a logged-in user', function(done) {
       api.get('/api/users')
+      .set('X-Auth', 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IkFsYW4iLCJmdWxsTmFtZSI6IkFsYW4gVHVyaW5nIiwiZW1haWwiOiJhbGFudEBjYW0uYWMudWsifQ.nkkcg6nMzhrakHyfd4yFfCTDAkkhnfvjgBVXPR7ftyk')
       .expect(200)
       .expect(function(response) {
-        expect(response.body).to.have.length(3)
+        expect(response.body.fullName).to.equal('Alan Turing')
       })
       .end(done)
     })
   })
-
+/*
   describe('GET /api/users/:user', function() {
 
     beforeEach(function(done) {
-      var user = {username: 'Dan', fullName: 'Dan Robertson', email: 'dar64@cam.ac.uk', password: 'passsme', avatar: ''}
+      var user = { "password" : "$2a$10$l.51Gf3hVs8.CyUaUpf9wuwiBF7ESSdxALhiac/J/257Asc6sgpky", "username" : "Paul", "fullName" : "Paul Robertson", "email" : "paul.robertson@costain.com", "avatar" : "" }
       User.create(user, done)
     })
 
     it('find user by username', function(done) {
-      api.get('/api/users/Dan')
+      api.get('/api/users/Alan')
       .expect(200)
       .expect(function(response) {
-        expect(response.body.fullName).to.equal('Dan Robertson')
-        expect(response.body.email).to.equal('dar64@cam.ac.uk')
+        expect(response.body.fullName).to.equal('Alan Turing')
+        expect(response.body.email).to.equal('alant@cam.ac.uk')
       })
       .end(done)
     })
@@ -83,4 +91,5 @@ describe('controllers.api.users', function() {
       })
     })
   })
+*/
 })

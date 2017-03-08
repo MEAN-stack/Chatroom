@@ -5,7 +5,6 @@ var jwt = require('jwt-simple')
 var config = require('../../config')
 
 router.post('/', function(req, res, next) {
-  console.log("creating session for "+req.body.username)
   User.findOne({username: req.body.username})
   .select('password')
   .select('username')
@@ -18,7 +17,6 @@ router.post('/', function(req, res, next) {
     if (!user) {
       return res.sendStatus(401)
     }
-    console.log('Compare '+ req.body.password + ' : ' + user.password)
     bcrypt.compare(req.body.password, user.password, function(err, valid) {
       if (err) {
         console.log(err.message)
@@ -33,7 +31,7 @@ router.post('/', function(req, res, next) {
           fullName: user.fullName,
           email: user.email
         }, config.secret)
-        res.send(token)
+        res.status(201).send(token)
       }
       catch (ex) {
         console.log('Caught '+ex.message)
