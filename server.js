@@ -23,6 +23,7 @@ room2.save(function(err, room) {})
 var room3 = new Room({"roomname" : "Java", "topic" : "Java Talk", "members" : []})
 room3.save(function(err, room) {})
 
-app.listen(3000, function() {
-  console.log('Chatroom server listening on port ', 3000)
+var port = process.env.PORT || 3000
+app.listen(port, function() {
+  console.log('Chatroom server listening on port ', port)
 })
