@@ -1,3 +1,9 @@
+var db = require('../../db')
+var chai = require('chai')
+chai.use(require('chai-as-promised'))
+var expect = chai.expect
+
+
 describe('User registration', function() {
   it('registers a new user', function() {
     // go to homepage
@@ -5,17 +11,32 @@ describe('User registration', function() {
     
     // click 'register'
     element(by.css('nav .register')).click()
-    
+
+    // fill out the form    
     element(by.model('username')).sendKeys('Lambda')
     element(by.model('fullName')).sendKeys('Alonzo Church')
     element(by.model('email')).sendKeys('Lambda@calculus.com')
     element(by.model('password')).sendKeys('passme')
+
+    // submit the form
     element(by.css('form .btn')).click()
 
-    browser.pause()
 
-    
+    // click 'login'
+    element(by.css('nav .login')).click()
 
-    // the user should see a confirmation message
+    // fill out the form    
+    element(by.model('username')).sendKeys('Lambda')
+    element(by.model('password')).sendKeys('passme')
+
+    // submit the form
+    element(by.css('form .btn')).click()
+
+    // the username should appear in the navbar
+    expect(element(by.css('.navbar')).getText()).to.eventually.contain('Lambda')
+  })
+
+  afterEach(function() {
+    db.connection.db.dropDatabase()
   })
 })
