@@ -1,6 +1,6 @@
 var app = angular.module('app', [
   'ngRoute',
-  'ui.layout'
+  'ui.bootstrap'
 ])
 
 

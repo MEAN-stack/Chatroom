@@ -5,6 +5,7 @@
   "author": "Paul Robertson <paul.robertson@soft-machine.co.uk>",
   "license": "MIT",
   "dependencies": {
+    "angular-ui-bootstrap": "^2.5.0",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.16.1",
     "express": "^4.14.1",

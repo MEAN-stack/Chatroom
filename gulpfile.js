@@ -14,6 +14,23 @@ gulp.task('js', function() {
     .pipe(gulp.dest('assets'))
 })
 
+gulp.task('images', function() {
+  gulp.src(['images/*'])
+    .pipe(gulp.dest('assets'))
+})
+
+gulp.task('css', function() {
+  gulp.src(['app.css'])
+    .pipe(gulp.dest('assets'))
+})
+
+gulp.task('bootstrap', function() {
+  gulp.src(['node_modules/angular-ui-bootstrap/dist/*'])
+    .pipe(gulp.dest('assets'))
+})
+
 gulp.task('watch:js', ['js'], function() {
   gulp.watch('ng/**/*.js', ['js'])
 })
+
+gulp.task('build', ['js', 'css', 'images', 'bootstrap'])
