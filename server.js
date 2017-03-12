@@ -12,13 +12,7 @@ var Room = require('./models/room')
 Room.remove({}, function(err, room){})
 var room1 = new Room({"roomname" : "The Pub", "topic" : "Random Chat", "members" : []})
 room1.save(function(err, room) {})
-var room2 = new Room({"roomname" : "Node", "topic" : "node.js", "members" : [
-          "Paul Robertson",
-          "Alonzo Church",
-          "Alan Turing",
-          "Haskell Curry",
-          "Ryan Dahl"
-        ]})
+var room2 = new Room({"roomname" : "Node", "topic" : "node.js", "members" : []})
 room2.save(function(err, room) {})
 var room3 = new Room({"roomname" : "Java", "topic" : "Java Talk", "members" : []})
 room3.save(function(err, room) {})

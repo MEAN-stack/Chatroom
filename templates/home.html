@@ -1,17 +1,21 @@
-<!--
-            <div class='container' style='width: 100%; margin-top: 10px;'>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-6">
+          <h2>Rooms</h2>
+          <uib-accordion close-others="true">
+            <div uib-accordion-group ng-repeat='room in rooms'>
+              <uib-accordion-heading><span>{{room.roomname}}</span><i class="pull-right glyphicon glyphicon-plus"></i></uib-accordion-heading>
+              <h4>{{room.topic}}</h4>
               <ul class='list-group'>
-                <li ng-repeat='room in rooms' class='list-group-item'>
-                  <strong>{{room.roomname}}</strong>
+                <li ng-repeat='member in room.members' class='list-group-item'>
+                  <strong>{{member}}</strong>
                 </li>
               </ul>
             </div>
--->
-<div class="container">
-  <h2>Rooms</h2>
-  <uib-accordion close-others="true">
-    <div uib-accordion-group ng-repeat='room in rooms'>
-        <uib-accordion-heading>{{room.roomname}}</uib-accordion-heading>
+          </uib-accordion>
+        </div>
+        <div class="col-lg-6">
+          <h2>Messages</h2>
+        </div>
     </div>
-  </uib-accordion>
 </div>
