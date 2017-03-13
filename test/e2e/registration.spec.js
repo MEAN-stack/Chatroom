@@ -13,7 +13,7 @@ describe('User registration', function() {
     element(by.css('nav .register')).click()
 
     // fill out the form    
-    element(by.model('username')).sendKeys('Lambda')
+    element(by.model('username')).sendKeys('lambda')
     element(by.model('fullName')).sendKeys('Alonzo Church')
     element(by.model('email')).sendKeys('Lambda@calculus.com')
     element(by.model('password')).sendKeys('passme')
